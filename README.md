@@ -30,7 +30,14 @@
 
 ## 🚀 Getting Started
 
-### 1. Prerequisites
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/wasxy47/my_rag_project.git
+cd my_rag_project
+```
+
+### 2. Prerequisites
 
 Ensure you have Python 3.10 or higher installed. Create and activate a virtual environment:
 
@@ -43,7 +50,7 @@ source venv/bin/activate
 
 ```
 
-### 2. Installation
+### 3. Installation
 
 Install the necessary dependencies:
 
@@ -52,7 +59,7 @@ pip install -r requirements.txt
 
 ```
 
-### 3. Environment Setup
+### 4. Environment Setup
 
 Create a `.env` file in the root directory and add your Google AI Studio API Key:
 
@@ -61,7 +68,7 @@ GEMINI_API_KEY=your_actual_api_key_here
 
 ```
 
-### 4. Usage
+### 5. Usage
 
 Place your text files in the `data/` folder and launch the application:
 
