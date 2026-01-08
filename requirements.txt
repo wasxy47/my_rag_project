@@ -1,4 +1,7 @@
+google-genai
 python-dotenv
 langchain-text-splitters
 chromadb
-google-genai
+streamlit
+pypdf
+python-docx
