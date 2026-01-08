@@ -1,4 +1,3 @@
-````markdown
 # 🚀 Smart-RAG v2.0 — Multi-Document Nexus Insight Engine
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
@@ -6,46 +5,46 @@
 [![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![ChromaDB](https://img.shields.io/badge/Vector_DB-ChromaDB-green.svg)](https://www.trychroma.com/)
 
-**Smart-RAG v2.0** is a professional-grade **Retrieval-Augmented Generation (RAG)** system designed to deliver precise, context-aware answers from large document collections.  
-It combines **semantic search**, **persistent vector storage**, and a **dual-data ingestion pipeline** to support both static knowledge bases and live document uploads.
+**Smart-RAG v2.0** is a production-ready **Retrieval-Augmented Generation (RAG)** system engineered to deliver accurate, context-aware answers from large and diverse document collections.  
+It integrates **semantic search**, **persistent vector storage**, and a **dual-data ingestion pipeline**, enabling seamless interaction with both static knowledge bases and dynamically uploaded documents.
 
 ---
 
 ## 🌟 What Makes This Different
 
-Smart-RAG v2.0 is built around a **Dual-Stream Knowledge Architecture**:
+Smart-RAG v2.0 is architected around a **Dual-Stream Knowledge Model**:
 
 1. **Pre-Fed Knowledge Base**
-   - Automatically indexes all documents inside the `data/` directory on startup.
-   - Ideal for textbooks, manuals, notes, and long-term reference material.
+   - Automatically scans and indexes all documents in the `data/` directory at startup.
+   - Optimized for textbooks, manuals, notes, and long-term reference content.
 
 2. **Dynamic Runtime Uploads**
-   - Upload **PDF, DOCX, or TXT** files directly through the Streamlit UI.
-   - Instantly expands the AI’s knowledge without restarting the app.
+   - Upload **PDF, DOCX, or TXT** files directly through the Streamlit interface.
+   - Instantly augments the AI’s knowledge without requiring an application restart.
 
-This design supports both **stable datasets** and **ad-hoc exploration** in a single system.
+This approach enables both **reliable long-term storage** and **on-demand exploration** within a unified system.
 
 ---
 
 ## ✨ Key Features
 
 - **Multi-Format Document Support**  
-  Extracts and processes content from PDF, DOCX, and TXT files.
+  Extracts and processes content from PDF, DOCX, and TXT files with consistent normalization.
 
-- **Semantic Search (Not Keyword Matching)**  
-  Uses `text-embedding-004` to understand meaning, intent, and context.
+- **Semantic Search (Beyond Keywords)**  
+  Leverages `text-embedding-004` to capture intent, meaning, and contextual relevance.
 
 - **Persistent Vector Memory**  
-  ChromaDB stores embeddings locally for fast retrieval across sessions.
+  Uses ChromaDB for local, persistent embedding storage across sessions.
 
 - **Source-Aware Responses**  
-  Answers are generated strictly from retrieved document chunks, with file-level attribution.
+  Generates answers strictly from retrieved document chunks, with clear file-level attribution.
 
 - **Resilient API Handling**  
-  Gracefully handles rate limits (429) and server overloads (503).
+  Includes safeguards for API rate limits (429) and transient server errors (503).
 
 - **Modular Architecture**  
-  Clean separation between UI, RAG logic, document parsing, and vector storage.
+  Maintains a clean separation of concerns between UI, RAG logic, document parsing, and vector storage.
 
 ---
 
@@ -75,7 +74,7 @@ venv\Scripts\activate
 
 # macOS / Linux
 source venv/bin/activate
-````
+```
 
 ---
 
@@ -165,21 +164,3 @@ Open an issue for discussion or submit a pull request with clear context and sco
 * **v2.0:** Streamlit UI, multi-format ingestion, dual-data pipeline
 
 ---
-
-### Notes for GitHub
-
-* Replace your existing `README.md` entirely with this file.
-* Commit message suggestion:
-  **`refactor: upgrade README for Smart-RAG v2.0`**
-
-This README positions your project as **serious, scalable, and portfolio-ready**—the kind that recruiters and collaborators actually respect.
-
-```
-
-If you want next-level polish, the natural upgrades are:
-- a **System Architecture diagram**
-- a **demo GIF**
-- a **GitHub social preview banner**
-
-Those are the finishing touches that separate hobby repos from real engineering projects.
-```
