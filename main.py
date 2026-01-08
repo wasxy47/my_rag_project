@@ -55,7 +55,6 @@ def chat_with_books():
                     print(f"\n🔍 [Analyzing Context...]")
                     # print(f"{part.text}") # Agar thinking nahi dekhni to ise comment kar den
                 else:
-                    # Yahan humne "Gemini Answer" hata kar behtar heading daal di hai
                     print(f"\n📖 Book Insights:")
                     print(f"{part.text}")
                     print("─" * 40)
