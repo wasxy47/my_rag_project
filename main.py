@@ -1,38 +1,48 @@
 import os
-from utils import process_all_books, get_semantic_context, clear_database, client
+import time
+from utils import (
+    process_all_from_folder, # Updated function name from utils.py
+    get_semantic_context, 
+    clear_database, 
+    client
+)
 from google.genai import types
 
 def chat_with_books():
     db_path = "./db"
     
+    # Syncing local library if database folder is missing
     if not os.path.exists(db_path):
         print("First time setup: Processing all books in /data...")
-        process_all_books()
+        process_all_from_folder() 
         print("Processing complete!")
     
-    SELECTED_MODEL = "gemini-2.5-flash" 
+    # Using 2.0-flash for better stability on free tier
+    SELECTED_MODEL = "gemini-2.0-flash" 
 
     print("\n" + "═"*40)
-    print("   📚  SMART BOOK READER ACTIVE  📚   ")
+    print("   📚  NEXUS SMART READER (v2.0)  📚   ")
     print("   Commands: 'exit' | 'clear'         ")
     print("═" * 40)
 
     while True:
-        query = input("\n💬 Your Question if not then exit/quit: ").strip()
+        query = input("\n💬 Your Question (exit/quit to stop): ").strip()
         if not query: continue
-        if query.lower() == 'exit' or query.lower() == 'quit': break
+        if query.lower() in ['exit', 'quit']: break
+        
         if query.lower() == 'clear':
-            clear_database()
-            print("Database cleared. Restart to re-process files.")
+            if clear_database():
+                print("✅ Database wiped using reset method.")
+            else:
+                print("⚠️ Error: Files are locked by Windows.")
             break
         
-        context = get_semantic_context(query)
+        # Retrieval with top_k=3 to save tokens
+        context = get_semantic_context(query, top_k=3)
         
         prompt = f"""
-        Instructions:
-        You are a specialized RAG assistant. Below is context retrieved from multiple files.
-        Each section starts with '[Source File: filename]'. 
-        If a user asks about a specific file, ONLY look at the text under that source label.
+        Instructions: Use the provided context to answer. 
+        Each section starts with '[Source File: filename]'.
 
         Context:
         {context}
@@ -41,6 +51,7 @@ def chat_with_books():
         """
         
         try:
+            print("\n🔍 Searching through your library...")
             response = client.models.generate_content(
                 model=SELECTED_MODEL, 
                 contents=prompt,
@@ -49,18 +60,23 @@ def chat_with_books():
                 )
             )
             
+            # Displaying thoughts and insights
             for part in response.candidates[0].content.parts:
                 if part.thought:
-                    # Thinking ko thora light rakhte hain
-                    print(f"\n🔍 [Analyzing Context...]")
-                    # print(f"{part.text}") # Agar thinking nahi dekhni to ise comment kar den
+                    print(f"\n🧠 [AI Thinking...]")
                 else:
                     print(f"\n📖 Book Insights:")
                     print(f"{part.text}")
                     print("─" * 40)
                     
         except Exception as e:
-            print(f"\n⚠️ Error: {e}")
+            # Handling common API errors
+            if "429" in str(e):
+                print("\n⚠️ Quota Limit: Please wait 60 seconds before asking again.")
+            elif "503" in str(e):
+                print("\n⚠️ Server Busy: Google is overloaded. Try again in 30 seconds.")
+            else:
+                print(f"\n⚠️ System Error: {e}")
 
 if __name__ == "__main__":
     chat_with_books()
